@@ -18,6 +18,15 @@ services:
       timeout: 5s
       retries: 5
 
+  centrifugo:
+    image: centrifugo/centrifugo:v5
+    container_name: boardgames-centrifugo
+    command: centrifugo -c /centrifugo/config.json
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./centrifugo:/centrifugo:ro
+
   app:
     build: .
     container_name: boardgames-spring-app
@@ -25,11 +34,15 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/boardgames_db
       - SPRING_DATASOURCE_USERNAME=mzaslav
       - SPRING_DATASOURCE_PASSWORD=mzaslav
+      - CENTRIFUGO_API_URL=http://centrifugo:8000/api
+      - CENTRIFUGO_API_KEY=boardgames-api-key
     ports:
       - "8080:8080"
     depends_on:
       db:
         condition: service_healthy
+      centrifugo:
+        condition: service_started
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/api/games/"]
       interval: 10s

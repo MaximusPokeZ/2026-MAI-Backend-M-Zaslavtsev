@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BoardGameRepository extends JpaRepository<BoardGame, Long> {
-    // Ищет вхождение строки q в названии (Title) ИЛИ в описании (Description), игнорируя регистр
     List<BoardGame> findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String title, String description);
+
+    List<BoardGame> findByCategory_Id(Long categoryId);
 }

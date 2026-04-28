@@ -14,3 +14,6 @@ migrate:
 	$(DOCKER_COMPOSE) up -d --build
 	@echo "Схема БД (миграции) успешно применена через Hibernate!"
 
+reset:
+	$(DOCKER_COMPOSE) down -v
+

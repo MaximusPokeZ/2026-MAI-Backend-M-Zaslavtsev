@@ -1,0 +1,10 @@
+{
+  "token_hmac_secret_key": "boardgames-secret-key",
+  "api_key": "boardgames-api-key",
+  "admin": true,
+  "admin_password": "password",
+  "admin_secret": "secret",
+  "client_insecure": true,
+  "allowed_origins": ["*"],
+  "log_level": "info"
+}
