@@ -43,7 +43,6 @@ public class CentrifugoService {
             restTemplate.postForObject(apiUrl, new HttpEntity<>(body, headers), String.class);
             log.info("Published to channel '{}': {}", channel, data);
         } catch (Exception e) {
-            // Centrifugo недоступен — игра уже сохранена в БД, продолжаем без WebSocket-уведомления
             log.warn("Centrifugo publish failed: {}", e.getMessage());
         }
     }
