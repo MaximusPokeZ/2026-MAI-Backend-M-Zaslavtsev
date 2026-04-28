@@ -2,6 +2,7 @@ package com.example.boardgames.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Category {
 
     // Одна категория содержит много игр
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<BoardGame> games;
 
     public Long getId() {

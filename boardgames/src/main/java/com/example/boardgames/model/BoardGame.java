@@ -39,6 +39,14 @@ public class BoardGame {
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Category getCategory() {
         return category;
     }
